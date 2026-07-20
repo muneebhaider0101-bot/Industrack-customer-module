@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test'
-import { searchoption } from '../pages/Search'
-import { Addcustomer } from '../pages/addcustomer';
-import { estimate } from '../pages/estimate';
+import { searchoption } from '../Pages/Search'
+import { Addcustomer } from '../Pages/Addcustomer';
+import { estimate } from '../Pages/Estimate';
 
 
 test.describe("Customer module-Search", ()=>
@@ -71,14 +71,13 @@ test.describe("Customer module-Search", ()=>
 
     test("WIP: Verify the functionality to navigate to the add new customer page", async ({page})=>
     {
-       await page.locator('.loading spinner').waitFor({state: "hidden"});
+       await page.locator('.loading-spinner').waitFor({state: "hidden"});
        await addcustomer.navigate();
-       page.pause();
     })
 
     test("Verify the functionality to add a new customer", async ({page})=>
     {
-        await page.locator('.loading spinner').waitFor({state: "hidden"});
+        await page.locator('.loading-spinner').waitFor({state: "hidden"});
         await addcustomer.navigate();
         await addcustomer.general_info("qademo");
         await addcustomer.contact_details("qa", "demo", "NONE", "8787878787", "8987878787", "Something@gmail.com");
@@ -91,7 +90,6 @@ test.describe("Customer module-Search", ()=>
         await page.getByRole('button', {name: 'Yes'}).first().click();
         await page.waitForTimeout(1000);
         await expect(page).toHaveURL(/.*\/crmTab\/overview.*/)
-        await page.pause();
     })
 
     test("verify the functionality to navigate to the estimate page from customer profile", async({page})=>
