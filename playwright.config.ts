@@ -5,7 +5,7 @@ import path from 'path';
 const AUTH_STATE_PATH = path.join(__dirname, 'playwright/.auth/user.json');
 
 export default defineConfig({
-  testDir: './tests', // Points to your test files directory
+  testDir: './Tests', // Points to your test files directory
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
