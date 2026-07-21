@@ -41,7 +41,6 @@ export default defineConfig({
                viewport: { width: 1525, height: 875 }, 
 
         storageState: AUTH_STATE_PATH, 
-        headless: false
       },
       // 4. CRITICAL: Guarantees 'setup' runs first and creates user.json
       dependencies: ['setup'], 
