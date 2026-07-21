@@ -58,7 +58,7 @@ async navigate() {
     
     await this.page.waitForTimeout(1000); 
     console.log("Executing raw DOM click...");
-    await targetButton.evaluate(node => node.click());
+    await targetButton.evaluate((node: HTMLElement) => node.click());
 
     const heading = this.page.locator('h4.modal-title', { hasText: /Add Customer/i });
     await expect(heading).toBeVisible({ timeout: 10000 });

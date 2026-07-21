@@ -16,7 +16,7 @@ export default defineConfig({
     /* 1. CRITICAL: Provide the base URL so Playwright understands which 
        domain to automatically attach the injected cookie state to */
     baseURL: 'https://onetrack.industrack.com',
-    viewport: { width: 1500, height: 1220 }, 
+    viewport: { width: 1525, height: 875 }, 
     // Default system trace capture options
     trace: 'on-first-retry',
   },
@@ -38,6 +38,8 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         /* 3. CRITICAL: Tell this browser project to read 
            and apply the generated cookies/localStorage keys */
+               viewport: { width: 1525, height: 875 }, 
+
         storageState: AUTH_STATE_PATH, 
         headless: false
       },
