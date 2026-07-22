@@ -83,7 +83,7 @@ test.describe("Customer module-Search", ()=>
         await addcustomer.contact_details("qa", "demo", "NONE", "8787878787", "8987878787", "Something@gmail.com");
         await addcustomer.service_location("earth", "mkkm", "12", "mkn", "mnn","10001","mnn");
         await addcustomer.validate_address();
-        await addcustomer.upload_service_contract("test-data/sample.jpg");
+        await addcustomer.upload_service_contract("Test-data/sample.jpg");
         await addcustomer.Tax_Paymentterms("None", "Terms - 99", "Terms - 99");
         await addcustomer.custom_pricing("10", "Premium Installation");
         await addcustomer.save();
