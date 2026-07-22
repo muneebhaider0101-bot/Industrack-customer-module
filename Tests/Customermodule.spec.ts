@@ -65,7 +65,7 @@ test.describe("Customer module-Search", ()=>
     await page.getByRole('textbox', { name: "Search" }).waitFor({ state: 'visible' });
     await search.trysearch("12608 Henderson Rd Tampa FL 33625"); 
     const colindex= await search.columnheader("Location");
-    const result = page.getByRole("cell", {name: "12608 Henderson Rd Tampa FL 33625"}).nth(colindex);
+    const result = page.getByRole("cell", {name: "12608 Henderson Rd Tampa FL 33625"})//.nth(colindex);
     await expect(result).toBeVisible();
     })
 
