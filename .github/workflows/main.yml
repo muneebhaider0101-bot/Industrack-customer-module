@@ -1,11 +1,48 @@
-name: My first pipeline
-on: 
+name: MY TEST FILE
+on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
   workflow_dispatch: #Enable manual triggers
 jobs:
-  tests:
+  lint:
+    name: testing typescript code
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - run: echo "hello World"
+      - uses: actions/checkout@v4
+      - name: install dependencies
+        run: npm ci
+      - name: Tpescript check 
+        run: npx tsc --noEmit
+      
+  E2D-test:
+    needs: lint
+    name: MY E2E test file-shard${{matrix.shard}}/4
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1,2,3,4]
+    steps:
+      - name: checkout my code
+        uses: actions/checkout@v4
+      - name: setup node js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: installing dependencies
+        run: npm ci
+      - name: Install playwright envirnoment
+        run: npx playwright install --with-deps
+      - name: running playwright test
+        run: npx playwright test --shard=${{matrix.shard}}/4
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-shard-${{ matrix.shard }}
+          path: playwright-report/
+          retention-days: 14
