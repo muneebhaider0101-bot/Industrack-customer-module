@@ -28,6 +28,8 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
+      - name: Install TypeScript
+        run: npm install --no-save typescript
       - name: TypeScript check
         run: npx tsc --noEmit
  
